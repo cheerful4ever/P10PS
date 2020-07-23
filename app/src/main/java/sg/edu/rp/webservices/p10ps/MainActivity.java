@@ -5,12 +5,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,16 +26,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    int requestCode = 11111;
     ArrayList<Fragment> al;
     MyFragmentPagerAdapter adapter;
     ViewPager vPager;
-
+    SharedPreferences SP;
     Button btnReadLater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SP = getSharedPreferences("index",MODE_PRIVATE);
 
         vPager = findViewById(R.id.viewpager1);
 
@@ -49,13 +58,38 @@ public class MainActivity extends AppCompatActivity {
         btnReadLater.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int max = vPager.getChildCount();
-                if (vPager.getCurrentItem() < max-1){
-                    int nextPage = vPager.getCurrentItem() + 1;
-                    vPager.setCurrentItem(nextPage, true);
-                }
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.SECOND, 5);
+
+                Intent intent = new Intent(MainActivity.this,
+                        ScheduledNotificationReceiver.class);
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                        MainActivity.this, requestCode,
+                        intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager am = (AlarmManager)
+                        getSystemService(Activity.ALARM_SERVICE);
+                am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                        pendingIntent);
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        int index = vPager.getCurrentItem();
+        SharedPreferences.Editor prefs = SP.edit();
+        prefs.putInt("index",index);
+        prefs.commit();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        int index = SP.getInt("index",0);
+        vPager.setCurrentItem(index);
+        super.onResume();
     }
 }
