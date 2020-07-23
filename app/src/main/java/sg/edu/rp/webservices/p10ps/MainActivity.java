@@ -1,5 +1,6 @@
 package sg.edu.rp.webservices.p10ps;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,11 +13,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,4 +95,31 @@ public class MainActivity extends AppCompatActivity {
         vPager.setCurrentItem(index);
         super.onResume();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_previous:
+                if (vPager.getCurrentItem() > 0){
+                    int previousPage = vPager.getCurrentItem() - 1;
+                    vPager.setCurrentItem(previousPage, true);
+                }
+                break;
+            case R.id.action_random:
+                Random randomNumber = new Random();
+                int total = vPager.getChildCount();
+                vPager.setCurrentItem(randomNumber.nextInt(total),true);
+                break;
+            case R.id.action_next:
+                int max = vPager.getChildCount();
+                if (vPager.getCurrentItem() < max-1){
+                    int nextPage = vPager.getCurrentItem() + 1;
+                    vPager.setCurrentItem(nextPage, true);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
+
 }
