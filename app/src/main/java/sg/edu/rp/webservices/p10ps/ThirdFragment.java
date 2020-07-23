@@ -69,8 +69,7 @@ public class ThirdFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_third, container,false);
         tv3 = view.findViewById(R.id.tv3);
-        tv3.setText("Of all the words in the English language, the word 'set' has the most definitions!\n\n" +
-                "What is called a 'French kiss' in the English speaking world is known as an 'English kiss' in France.");
+        tv3.setText("Right handed people live, on average, nine years longer than left-handed people");
         btnColour = view.findViewById(R.id.btnColour);
         btnColour.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -69,8 +69,7 @@ public class SecondFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_second, container,false);
         tv2 = view.findViewById(R.id.tv2);
-        tv2.setText("Of all the words in the English language, the word 'set' has the most definitions!\n\n" +
-                "What is called a 'French kiss' in the English speaking world is known as an 'English kiss' in France.");
+        tv2.setText("It's against the law to burp, or sneeze in a church in Nebraska, USA..");
         btnColour = view.findViewById(R.id.btnColour);
         btnColour.setOnClickListener(new View.OnClickListener() {
             @Override

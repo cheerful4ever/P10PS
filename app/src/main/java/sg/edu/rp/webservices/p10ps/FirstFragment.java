@@ -69,8 +69,7 @@ public class FirstFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_first, container,false);
         tv1 = view.findViewById(R.id.tv1);
-        tv1.setText("Of all the words in the English language, the word 'set' has the most definitions!\n\n" +
-                "What is called a 'French kiss' in the English speaking world is known as an 'English kiss' in France.");
+        tv1.setText("You're born with 300 bones, but by the time you become an adult, you only have 206.");
         btnColour = view.findViewById(R.id.btnColour);
         btnColour.setOnClickListener(new View.OnClickListener() {
             @Override
