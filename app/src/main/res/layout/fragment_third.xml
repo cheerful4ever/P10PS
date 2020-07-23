@@ -12,9 +12,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="this is the third fragment" />
+            android:layout_height="match_parent"/>
 
         <Button
             android:id="@+id/btnColour"
