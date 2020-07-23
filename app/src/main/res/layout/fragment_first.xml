@@ -17,10 +17,10 @@
             android:text="this is the first fragment" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnColour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="change color" />
     </LinearLayout>
 
 </FrameLayout>

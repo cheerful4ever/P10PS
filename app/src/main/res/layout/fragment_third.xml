@@ -11,16 +11,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="this is the third fragment" />
+
+        <Button
+            android:id="@+id/btnColour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Colour" />
     </LinearLayout>
 
 </FrameLayout>
